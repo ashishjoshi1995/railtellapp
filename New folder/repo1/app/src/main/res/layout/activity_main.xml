@@ -9,8 +9,66 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ashish.railtellapp.MainActivity">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="UserName"
+        android:id="@+id/login_mobile"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="Password"
+        android:id="@+id/login_password"
+        android:password="true"
+        android:layout_below="@id/login_mobile"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/button_login"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/login_password"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Forgot Password?"
+        android:layout_below="@id/button_login"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/forgot_password"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:layout_below="@id/forgot_password"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/change_password"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New User?"
+        android:layout_below="@id/change_password"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/new_user"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
 </RelativeLayout>
