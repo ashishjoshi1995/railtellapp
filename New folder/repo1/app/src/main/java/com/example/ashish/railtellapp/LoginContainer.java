@@ -22,15 +22,16 @@ public class LoginContainer extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.content, Fragment.instantiate(this,
                         ChangePassword.class.getName(),getIntent().getExtras()));
                 break;
+            case Constants.NEW_USER:
+                fragmentTransaction.replace(R.id.content, Fragment.instantiate(this,
+                        NewUser.class.getName(),getIntent().getExtras()));
+                break;
 
             case Constants.FORGOT_PASSWORD:
                 fragmentTransaction.replace(R.id.content, Fragment.instantiate(this,
                         ForgotPassword.class.getName(),getIntent().getExtras()));
                 break;
-            case Constants.NEW_USER:
-                fragmentTransaction.replace(R.id.content, Fragment.instantiate(this,
-                      NewUser.class.getName(),getIntent().getExtras()));
-                break;
+
 
         }
         fragmentTransaction.commit();
