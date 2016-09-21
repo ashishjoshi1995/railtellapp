@@ -1,5 +1,6 @@
 package com.example.ashish.railtellapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.StrictMode;
+
+import com.example.ashish.railtellapp.home.home;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -34,6 +37,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText username,password;
+    Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,33 +48,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             StrictMode.setThreadPolicy(policy);
         }
 
-        Button login = (Button)findViewById(R.id.button_login);
+        Button login = (Button)findViewById(R.id.btnLogin);
+        Button newUser = (Button)findViewById(R.id.btnLinkToRegisterScreen);
         login.setOnClickListener(this);
+        newUser.setOnClickListener(this);
 
-         username = (EditText)findViewById(R.id.login_mobile);
-         password = (EditText)findViewById(R.id.login_password);
+         username = (EditText)findViewById(R.id.email);
+         password = (EditText)findViewById(R.id.password);
 
-        TextView tvForgotPassword = (TextView)findViewById(R.id.forgot_password);
-        TextView tvChangePassword = (TextView)findViewById(R.id.change_password);
-        TextView tvNewUser = (TextView)findViewById(R.id.new_user);
+        Button tvForgotPassword = (Button)findViewById(R.id.b7);
+        b1 = (Button) findViewById(R.id.b1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intro = new Intent(MainActivity.this, home.class);
+                startActivity(intro);
+            }
+
+
+        });
+
+
         tvForgotPassword.setOnClickListener(this);
-        tvChangePassword.setOnClickListener(this);
-        tvNewUser.setOnClickListener(this);
+
+        //tvNewUser.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.change_password:
-                CommonUtils.openContainerActivity(this,Constants.CHANGE_PASSWORD);
-                break;
-            case R.id.forgot_password:
+//            case R.id.change_password:
+//                CommonUtils.openContainerActivity(this,Constants.CHANGE_PASSWORD);
+//                break;
+            case R.id.b7:
                 CommonUtils.openContainerActivity(this,Constants.FORGOT_PASSWORD);
                 break;
-            case R.id.new_user:
+            case R.id.btnLinkToRegisterScreen:
                 CommonUtils.openContainerActivity(this,Constants.NEW_USER);
                 break;
-            case R.id.button_login:
+            case R.id.btnLogin:
                 int responseCode = 0;
                 String user = username.getText().toString();
                 String pass = password.getText().toString();

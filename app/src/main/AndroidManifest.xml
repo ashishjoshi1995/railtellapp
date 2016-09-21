@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="home.home"
+            android:label="RAILTEL"
+            />
+        <activity android:name="home.mistalmore"
+            android:label="RAILTEL"/>
+        <activity android:name="home.mistalnext1"
+            android:label="RAILTEL"/>
+        <activity android:name="home.mistalmore2"
+            android:label="RAILTEL"/>
         <activity android:name=".LoginContainer"></activity>
     </application>
 
