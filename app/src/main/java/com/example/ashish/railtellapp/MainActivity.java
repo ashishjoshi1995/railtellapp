@@ -9,14 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.StrictMode;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         Button login = (Button)findViewById(R.id.button_login);
         login.setOnClickListener(this);
@@ -65,21 +75,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://49.40.112.2/modis/login.jsp");
+                HttpGet httppost = new HttpGet("http://49.40.112.2/modis/login?txtusername="+user+"&txtpassword="+pass);
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("txtusername", user));
-                nameValuePairs.add(new BasicNameValuePair("txtpassword", pass));
-                try {
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+//                nameValuePairs.add(new BasicNameValuePair("txtusername", user));
+//                nameValuePairs.add(new BasicNameValuePair("txtpassword", pass));
+//                try {
+//                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
 
                 //HttpResponse response;
                 HttpResponse response = null;
                 try {
                     response = httpClient.execute(httppost);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
 
                 }
@@ -87,10 +97,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // writing response to logLog.e("Http Response:", response.toString());
 
                 try {
-                    Toast.makeText(getApplicationContext(),response.toString(),
+
+                    //Log.e("getting response",""+response.getEntity().getContent().toString());
+                    Log.e("HELLO","HELLO");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+                    String json = reader.readLine();
+                    Log.e("hahaha",""+json);
+                    Toast.makeText(getApplicationContext(),json,
                             Toast.LENGTH_SHORT).show();
+//                    JSONTokener tokener = new JSONTokener(json);
+//                    JSONArray finalResult = new JSONArray(tokener);
+//                    Log.e("token",""+tokener.toString());
+//                    Log.e("final",""+finalResult.toString());
+//                    ResponseHandler<String> resonseHandler = new BasicResponseHandler();
+//                    String responseStr = httpClient.execute(httppost, resonseHandler);
+//                    Log.e("hellooo",responseStr+"");
+
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),""+e.getMessage(),
+                    Toast.makeText(getApplicationContext(),""+e.getMessage()+"nnnnnnnnnnn "+e.getCause(),
                             Toast.LENGTH_SHORT).show();
 
                 }
