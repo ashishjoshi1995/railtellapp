@@ -17,14 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="home.home"
+            android:name="com.example.ashish.railtellapp.home.home"
             android:label="RAILTEL"
             />
-        <activity android:name="home.mistalmore"
+        <activity android:name="com.example.ashish.railtellapp.home.mistalmore"
             android:label="RAILTEL"/>
-        <activity android:name="home.mistalnext1"
+        <activity android:name="com.example.ashish.railtellapp.home.mistalnext1"
             android:label="RAILTEL"/>
-        <activity android:name="home.mistalmore2"
+        <activity android:name="com.example.ashish.railtellapp.home.mistalmore2"
             android:label="RAILTEL"/>
         <activity android:name=".LoginContainer"></activity>
     </application>

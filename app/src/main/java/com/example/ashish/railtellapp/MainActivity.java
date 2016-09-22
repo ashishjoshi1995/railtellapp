@@ -58,17 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button tvForgotPassword = (Button)findViewById(R.id.b7);
         b1 = (Button) findViewById(R.id.b1);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intro = new Intent(MainActivity.this, home.class);
-                startActivity(intro);
-            }
-
-
-        });
+        b1.setOnClickListener(this);
 
 
         tvForgotPassword.setOnClickListener(this);
@@ -79,9 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-//            case R.id.change_password:
-//                CommonUtils.openContainerActivity(this,Constants.CHANGE_PASSWORD);
-//                break;
+            case R.id.b1:
+                Intent intro = new Intent(MainActivity.this, home.class);
+                intro.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intro);
+                break;
             case R.id.b7:
                 CommonUtils.openContainerActivity(this,Constants.FORGOT_PASSWORD);
                 break;
