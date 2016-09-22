@@ -87,15 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 HttpClient httpClient = new DefaultHttpClient();
                 HttpGet httppost = new HttpGet("http://49.40.112.2/modis/login?txtusername="+user+"&txtpassword="+pass);
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-//                nameValuePairs.add(new BasicNameValuePair("txtusername", user));
-//                nameValuePairs.add(new BasicNameValuePair("txtpassword", pass));
-//                try {
-//                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-//                } catch (UnsupportedEncodingException e) {
-//                    e.printStackTrace();
-//                }
 
-                //HttpResponse response;
                 HttpResponse response = null;
                 try {
                     response = httpClient.execute(httppost);
@@ -115,13 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.e("hahaha",""+json);
                     Toast.makeText(getApplicationContext(),json,
                             Toast.LENGTH_SHORT).show();
-//                    JSONTokener tokener = new JSONTokener(json);
-//                    JSONArray finalResult = new JSONArray(tokener);
-//                    Log.e("token",""+tokener.toString());
-//                    Log.e("final",""+finalResult.toString());
-//                    ResponseHandler<String> resonseHandler = new BasicResponseHandler();
-//                    String responseStr = httpClient.execute(httppost, resonseHandler);
-//                    Log.e("hellooo",responseStr+"");
+                    Intent i = new Intent(MainActivity.this,AfterLogin.class);
+                    startActivity(i);
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(),""+e.getMessage()+"nnnnnnnnnnn "+e.getCause(),
