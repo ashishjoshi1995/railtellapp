@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpGet httppost = new HttpGet("http://49.40.112.2/modis/login?txtusername="+user+"&txtpassword="+pass);
+                HttpGet httppost = new HttpGet("http://aisiitr.in/modis/login?txtusername="+user+"&txtpassword="+pass);
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
                 HttpResponse response = null;
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(),""+e.getMessage()+"nnnnnnnnnnn "+e.getCause(),
                             Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
 
                 }
                 break;
