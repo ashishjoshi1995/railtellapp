@@ -64,7 +64,7 @@ public class AfterLogin extends AppCompatActivity implements OnMapReadyCallback 
                         "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
                 //30.18
                 //75
-
+//http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
             }
         });
 
