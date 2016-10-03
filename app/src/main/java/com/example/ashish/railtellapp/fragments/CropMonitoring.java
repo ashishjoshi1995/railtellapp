@@ -103,7 +103,25 @@ public class CropMonitoring extends Fragment {
     String[] s = {
             "Punjab","Kerala","Tamil Nadu","Uttar Pradesh","Uttrakhand"
     };
+    String[] khali = {
+    };
+    String[] pun = {
+            "Amritsar","Bathinda","Faridkot","Fatehgarh Sahib","Firozpur","Gurdaspur","Hoshiarpur","Jalandhar","Kapurthala","Ludhiana","Mansa","Moga","Muktsar","Nawan Shehar","Patiala","Rupnagar","Sangrur"
+    };
+    String[] ker = {
+            "Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode","Malappuram","Palakkad","Pattanamtitta","Thiruvananthapuram","Thrissur","Wayanad"
+    };
+    String[] tam = {
+            "Ariyalur","Chennai","Coimbatore","Cuddalore","Dharmapuri","Dindigul","Erode","Kancheepuram","Kanniyakumari","Karur","Madurai","Nagapattinam","Namakkal","Nilgiris","Perambalur","Pudukkottai","Ramanathapuram","Salem","Sivaganga","Thanjavur","Theni","Thiruvallur","Thiruvarur","Thoothukudi","Tiruchchirappalli","Tirunelveli Kattabo","Tiruvannamalai","Vellore","Villupuram","Virudhunagar"
+    };
+    String[] up = {
+            "Agra","Aligarh","Allahabad","Ambedkar Nagar","Auraiya","Azamgarh","Badaun","Baghpat","Bahraich","Ballia","Balrampur","Banda","Bara Banki","Bareilly","Basti","Bijnor","Bulandshahr","Chandauli","Chitrakoot","Deoria","Etah","Etawah","Faizabad","Farrukhabad","Fatehpur","Firozabad","Gautam Buddha Nagar","Ghaziabad","Ghazipur","Gonda","Gorakhpur","Hamirpur","Hardoi","Hathras","Jalaun","Jaunpur","Jhansi","Jyotiba Phule Nagar","Kannauj","Kanpur Dehat","Kanpur","Kaushambi","Kushinagar","Lakhimpur Kheri","Lalitpur","Lucknow","Maharajganj","Mahoba","Mainpuri","Mathura","Mau","Meerut","Mirzapur","Moradabad","Muzaffarnagar","Pilibhit","Pratapgarh","Rae Bareli","Rampur","Saharanpur","Sant Kabir Nagar","Sant Ravi Das Nagar","Shahjahanpur","Shravasti","Siddharth Nagar","Sitapur","Sonbhadra","Sultanpur","Unnao","Varanasi"
+    };
+    String[]  utt= {
+            "Almora","Bageshwar","Chamoli","Champawat","Dehra Dun","Haridwar","Naini Tal","Pauri Garhwal","Pithoragarh","Rudra Prayag","Tehri Garhwal","Udham Singh Nagar","Uttarkashi"
 
+    };
+    String[] p = khali;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +139,7 @@ public class CropMonitoring extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         show = (Button)view.findViewById(R.id.show_data);
         view1 = (ImageView) view.findViewById(R.id.view1);
@@ -186,7 +205,44 @@ public class CropMonitoring extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=state.getSelectedItemPosition();
+                if(sid==0){
+                    p=pun;
+                }
+                else if(sid==1){
+                    p=ker;
+                }
+                else if(sid==2){
+                    p=tam;
+                }
+                else if(sid==3){
+                    p=up;
+                }
+                else if(sid==4){
+                    p=utt;
+                }
                 Toast.makeText(getActivity(), "You have selected City : " + s[sid],
+                        Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+        district =(Spinner)view.findViewById(R.id.district);
+
+        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item , p);
+
+        district.setAdapter(adapterDate);
+
+        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // Get select item
+                int sid=district.getSelectedItemPosition();
+                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override
