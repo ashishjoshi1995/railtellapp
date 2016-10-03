@@ -102,6 +102,7 @@ public class Welcome extends AppCompatActivity
 
         } else if (id == R.id.nav_gallery) {
 
+
         } else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_research_team) {
