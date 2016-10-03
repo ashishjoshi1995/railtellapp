@@ -4,21 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ashish.railtellapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Gallery.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Gallery#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Gallery extends Fragment {
 
 

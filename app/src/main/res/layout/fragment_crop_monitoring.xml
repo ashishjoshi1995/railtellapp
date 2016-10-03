@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ashish.railtellapp.AfterLogin">
+    tools:context="com.example.ashish.railtellapp.Welcome">
 
 
 
@@ -66,22 +66,12 @@
 
 
 
-            <fragment
-                android:id="@+id/map"
-
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_below="@id/show_data"
-                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv5"
-                android:layout_below="@id/map"
+                android:layout_below="@id/show_data"
                 android:text="Map"/>
 
 
