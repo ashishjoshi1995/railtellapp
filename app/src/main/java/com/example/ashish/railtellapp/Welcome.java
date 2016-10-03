@@ -90,7 +90,12 @@ public class Welcome extends AppCompatActivity
 
 
         } else if (id == R.id.nav_classification) {
-
+            navItemIndex = 2;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         } else if (id == R.id.nav_crop_monitor) {
             navItemIndex = 1;
@@ -101,11 +106,28 @@ public class Welcome extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.nav_gallery) {
-
+            navItemIndex = 3;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         } else if (id == R.id.nav_logout) {
+            //navItemIndex = 1;
+            //Fragment newFragment = getHomeFragment();
+            //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            //transaction.replace(R.id.frame, newFragment);
+           // transaction.addToBackStack(null);
+            //transaction.commit();
 
         } else if (id == R.id.nav_research_team) {
+            navItemIndex = 4;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         }
 
