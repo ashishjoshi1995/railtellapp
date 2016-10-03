@@ -91,7 +91,14 @@ public class Welcome extends AppCompatActivity
 
         } else if (id == R.id.nav_classification) {
 
+
         } else if (id == R.id.nav_crop_monitor) {
+            navItemIndex = 1;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id., newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
         } else if (id == R.id.nav_gallery) {
 

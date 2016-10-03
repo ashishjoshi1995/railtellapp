@@ -75,7 +75,7 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-
+                android:layout_below="@id/show_data"
                 />
 
             <TextView
