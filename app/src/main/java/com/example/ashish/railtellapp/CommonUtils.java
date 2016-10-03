@@ -19,4 +19,8 @@ public class CommonUtils {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    public static void openNavFragments(Context context, int idValue){
+
+    }
 }
