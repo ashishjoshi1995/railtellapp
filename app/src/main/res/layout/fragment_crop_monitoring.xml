@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv4"
 
-                android:text="Date: 01/Jan-08/Jan"/>
+                android:text="Crop Monitoring"/>
 
             <Spinner
                 android:id="@+id/year"
@@ -63,67 +63,6 @@
                 android:layout_below="@id/district"
                 android:text="Display"
                 />
-
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv5"
-                android:layout_below="@id/show_data"
-                android:text="Map"/>
-
-
-
-
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:id="@+id/view2"
-                android:layout_below="@id/map"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv2"
-                android:layout_below="@id/view2"
-                android:text="2016"/>
-
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:id="@+id/view1"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_below="@id/view2"
-
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv1"
-                android:layout_below="@id/view1"
-                android:text="2015"/>
-
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:id="@+id/view3"
-                android:layout_below="@id/tv1"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv3"
-                android:layout_below="@id/view3"
-                android:text="Haridwar"/>
 
 
         </RelativeLayout>
