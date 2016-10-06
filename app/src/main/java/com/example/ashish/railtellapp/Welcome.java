@@ -42,6 +42,13 @@ public class Welcome extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Fragment newFragment = getHomeFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 
     @Override
@@ -87,6 +94,9 @@ public class Welcome extends AppCompatActivity
             navItemIndex = 0;
             Fragment newFragment = getHomeFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
 
 
         } else if (id == R.id.nav_classification) {

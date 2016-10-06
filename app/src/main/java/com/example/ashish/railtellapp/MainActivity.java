@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.e("hahaha",""+json);
                     Toast.makeText(getApplicationContext(),json,
                             Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(MainActivity.this,AfterLogin.class);
+                    Intent i = new Intent(MainActivity.this,Welcome.class);
                     startActivity(i);
 
                 } catch (Exception e) {
