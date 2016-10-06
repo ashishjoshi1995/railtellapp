@@ -1,6 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -255,8 +256,7 @@ public class Classification extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
-//                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                new RequestTask().execute("http://aisiitr.in/modis/dtcclassificaiton?classi_cboyear=2016&classi_cbojuliandate=001&classi_cbostate=Uttrakhand&classi_cbodistrict=Haridwar");
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -269,6 +269,61 @@ public class Classification extends Fragment {
         //mapFragment.getMapAsync(this);
 
     }
+    class RequestTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... uri) {
+            Log.e("test", "hello");
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response;
+            String responseString = null;
+            try {
+                response = httpclient.execute(new HttpGet(uri[0]));
+                StatusLine statusLine = response.getStatusLine();
+                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+                    out.close();
+                } else{
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (ClientProtocolException e) {
+                //TODO Handle problems..
+            } catch (IOException e) {
+                //TODO Handle problems..
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //Do anything with response..
+            Log.e("test",result+"");
+            String[] ar=null;
+            try {
+                ar = result.split(",");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            String one = "http://aisiitr.in/modis/img/tmpclassi/2016001568.jpg";
+            String one1 = "http://aisiitr.in/modis/img/tmpclassi/2015001568.jpg";
+            String one2 = "http://aisiitr.in/modis/img/tmpcd/2016001568.jpg";
+            Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
+            Bundle b = new Bundle();
+            b.putString("one1", one1);
+            b.putString("one",one);
+            b.putString("one2",one2);//Your id
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
+            //finish();
 
 
+
+        }
+    }
 }
