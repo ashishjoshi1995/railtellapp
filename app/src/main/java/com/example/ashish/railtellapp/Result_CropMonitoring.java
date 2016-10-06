@@ -1,16 +1,10 @@
-package com.example.ashish.railtellapp.fragments;
+package com.example.ashish.railtellapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,9 +12,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.ashish.railtellapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
@@ -34,8 +32,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-
-public class Classification extends Fragment {
+public class Result_CropMonitoring extends AppCompatActivity implements OnMapReadyCallback {
     Button show;
     ImageView view1,view2,view3;
     private GoogleMap mgoogleMap;
@@ -100,54 +97,17 @@ public class Classification extends Fragment {
     String[] s = {
             "Punjab","Kerala","Tamil Nadu","Uttar Pradesh","Uttrakhand"
     };
-    String[] khali = {
-    };
-    String[] pun = {
-            "Amritsar","Bathinda","Faridkot","Fatehgarh Sahib","Firozpur","Gurdaspur","Hoshiarpur","Jalandhar","Kapurthala","Ludhiana","Mansa","Moga","Muktsar","Nawan Shehar","Patiala","Rupnagar","Sangrur"
-    };
-    String[] ker = {
-            "Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode","Malappuram","Palakkad","Pattanamtitta","Thiruvananthapuram","Thrissur","Wayanad"
-    };
-    String[] tam = {
-            "Ariyalur","Chennai","Coimbatore","Cuddalore","Dharmapuri","Dindigul","Erode","Kancheepuram","Kanniyakumari","Karur","Madurai","Nagapattinam","Namakkal","Nilgiris","Perambalur","Pudukkottai","Ramanathapuram","Salem","Sivaganga","Thanjavur","Theni","Thiruvallur","Thiruvarur","Thoothukudi","Tiruchchirappalli","Tirunelveli Kattabo","Tiruvannamalai","Vellore","Villupuram","Virudhunagar"
-    };
-    String[] up = {
-            "Agra","Aligarh","Allahabad","Ambedkar Nagar","Auraiya","Azamgarh","Badaun","Baghpat","Bahraich","Ballia","Balrampur","Banda","Bara Banki","Bareilly","Basti","Bijnor","Bulandshahr","Chandauli","Chitrakoot","Deoria","Etah","Etawah","Faizabad","Farrukhabad","Fatehpur","Firozabad","Gautam Buddha Nagar","Ghaziabad","Ghazipur","Gonda","Gorakhpur","Hamirpur","Hardoi","Hathras","Jalaun","Jaunpur","Jhansi","Jyotiba Phule Nagar","Kannauj","Kanpur Dehat","Kanpur","Kaushambi","Kushinagar","Lakhimpur Kheri","Lalitpur","Lucknow","Maharajganj","Mahoba","Mainpuri","Mathura","Mau","Meerut","Mirzapur","Moradabad","Muzaffarnagar","Pilibhit","Pratapgarh","Rae Bareli","Rampur","Saharanpur","Sant Kabir Nagar","Sant Ravi Das Nagar","Shahjahanpur","Shravasti","Siddharth Nagar","Sitapur","Sonbhadra","Sultanpur","Unnao","Varanasi"
-    };
-    String[]  utt= {
-            "Almora","Bageshwar","Chamoli","Champawat","Dehra Dun","Haridwar","Naini Tal","Pauri Garhwal","Pithoragarh","Rudra Prayag","Tehri Garhwal","Udham Singh Nagar","Uttarkashi"
-
-    };
-    String[] p = khali;
-
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_result__crop_monitoring);
+        show = (Button)findViewById(R.id.show_data);
+        view1 = (ImageView) findViewById(R.id.view1);
+        view2 = (ImageView) findViewById(R.id.view2);
+        view3 = (ImageView) findViewById(R.id.view3);
+        year =(Spinner)findViewById(R.id.year);
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_classification, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        super.onViewCreated(view, savedInstanceState);
-
-
-        show = (Button)view.findViewById(R.id.show_data);
-        view1 = (ImageView) view.findViewById(R.id.view1);
-        view2 = (ImageView) view.findViewById(R.id.view2);
-        view3 = (ImageView) view.findViewById(R.id.view3);
-        year =(Spinner)view.findViewById(R.id.year);
-
-        ArrayAdapter<String> adapter= new ArrayAdapter<String>(getActivity(),android.
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.
                 R.layout.simple_spinner_dropdown_item ,y);
 
         year.setAdapter(adapter);
@@ -159,7 +119,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + y[sid],
+                Toast.makeText(getBaseContext(), "You have selected City : " + y[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -168,9 +128,9 @@ public class Classification extends Fragment {
             }
         });
 
-        date =(Spinner)view.findViewById(R.id.date);
+        date =(Spinner)findViewById(R.id.date);
 
-        ArrayAdapter<String> adapterDate= new ArrayAdapter<String>(getActivity(),android.
+        ArrayAdapter<String> adapterDate= new ArrayAdapter<String>(this,android.
                 R.layout.simple_spinner_dropdown_item ,d);
 
         date.setAdapter(adapterDate);
@@ -182,7 +142,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + d[sid],
+                Toast.makeText(getBaseContext(), "You have selected City : " + d[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -191,9 +151,9 @@ public class Classification extends Fragment {
             }
         });
 
-        state =(Spinner)view.findViewById(R.id.state);
+        state =(Spinner)findViewById(R.id.state);
 
-        ArrayAdapter<String> adapterState= new ArrayAdapter<String>(getActivity(),android.
+        ArrayAdapter<String> adapterState= new ArrayAdapter<String>(this,android.
                 R.layout.simple_spinner_dropdown_item ,s);
 
         state.setAdapter(adapterState);
@@ -205,44 +165,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=state.getSelectedItemPosition();
-                if(sid==0){
-                    p=pun;
-                }
-                else if(sid==1){
-                    p=ker;
-                }
-                else if(sid==2){
-                    p=tam;
-                }
-                else if(sid==3){
-                    p=up;
-                }
-                else if(sid==4){
-                    p=utt;
-                }
-                Toast.makeText(getActivity(), "You have selected City : " + s[sid],
-                        Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-        district =(Spinner)view.findViewById(R.id.district);
-
-        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
-                R.layout.simple_spinner_dropdown_item , p);
-
-        district.setAdapter(adapterDate);
-
-        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // Get select item
-                int sid=district.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+                Toast.makeText(getBaseContext(), "You have selected City : " + s[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -256,7 +179,8 @@ public class Classification extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new RequestTask().execute("http://aisiitr.in/modis/dtcclassificaiton?classi_cboyear=2016&classi_cbojuliandate=001&classi_cbostate=Uttrakhand&classi_cbodistrict=Haridwar");
+                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
+                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -264,11 +188,19 @@ public class Classification extends Fragment {
         });
 
 
-        // SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-        //       .findFragmentById(R.id.map);
-        //mapFragment.getMapAsync(this);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mgoogleMap = googleMap;
+        mgoogleMap.getUiSettings().setScrollGesturesEnabled(false);
+
+    }
+
     class RequestTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -310,20 +242,63 @@ public class Classification extends Fragment {
             catch (Exception e){
                 e.printStackTrace();
             }
-            String one = "http://aisiitr.in/modis/img/tmpclassi/2016001568.jpg";
-            String one1 = "http://aisiitr.in/modis/img/tmpclassi/2015001568.jpg";
-            String one2 = "http://aisiitr.in/modis/img/tmpcd/2016001568.jpg";
-            Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
-            Bundle b = new Bundle();
-            b.putString("one1", one1);
-            b.putString("one",one);
-            b.putString("one2",one2);//Your id
-            intent.putExtras(b); //Put your id to your next Intent
-            startActivity(intent);
-            //finish();
+            String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
+            String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
+            String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
 
 
+            Picasso.with(getApplication())
+                    .load(one)
+                            //.placeholder(R.drawable.pic1a)   // optional
+                            //.error(R.drawable.pic1a)
+                            //.resize(400,400)                        // optional
+                    .into(view1);
+            Picasso.with(getApplication())
+                    .load(one1)
+                            //.placeholder(R.drawable.pic1a)   // optional
+                            //.error(R.drawable.pic1a)      // optional
+                            //.resize(400,400)                        // optional
+                    .into(view2);
+            Picasso.with(getApplication())
+                    .load(one2)
+                            //.placeholder(R.drawable.pic1a)   // optional
+                            //.error(R.drawable.pic1a)      // optional
+                            //.resize(400,400)                        // optional
+                    .into(view3);
+            try {
+                LatLng sydney = new LatLng(Double.parseDouble(ar[1]), Double.parseDouble(ar[2]));
+                mgoogleMap.addMarker(new MarkerOptions().position(sydney));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                CameraPosition position = CameraPosition.builder()
+                        .target(sydney)
+                        .zoom(12f)
+                        .bearing(0.0f)
+                        .tilt(0.0f)
+                        .build();
+                mgoogleMap.animateCamera(CameraUpdateFactory
+                        .newCameraPosition(position), null);
+                mgoogleMap.getUiSettings().setZoomControlsEnabled(true);
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
     }
+    private void initCamera(LatLng latLng) {
+        CameraPosition position = CameraPosition.builder()
+                .target(latLng)
+                .zoom(16f)
+                .bearing(0.0f)
+                .tilt(0.0f)
+                .build();
+
+        mgoogleMap.animateCamera(CameraUpdateFactory
+                .newCameraPosition(position), null);
+
+        mgoogleMap.getUiSettings().setZoomControlsEnabled(true);
+    }
 }
+
+

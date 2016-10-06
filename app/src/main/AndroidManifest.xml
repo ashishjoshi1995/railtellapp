@@ -27,7 +27,9 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBFp6EUxbzj7amb8bQZBnoQ-nFojOM8V20" />
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+
+        </activity>
         <activity
             android:name=".home.home"
             android:label="RAILTEL" />
@@ -44,7 +46,10 @@
         <activity
             android:name=".AfterLogin"
             android:label="@string/title_activity_after_login"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+
+        </activity>
         <activity
             android:name=".Welcome"
             android:label="@string/title_activity_welcome"
@@ -55,11 +60,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".prof" />
-        <activity android:name=".tasneem" />
-        <activity android:name=".shruti" />
-        <activity android:name=".ankush" />
-        <activity android:name=".deepak"></activity>
     </application>
 
 </manifest>
