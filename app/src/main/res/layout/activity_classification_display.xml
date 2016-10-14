@@ -8,12 +8,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ashish.railtellapp.displayActivities.ClassificationDisplay">
-
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/view1"
-        android:layout_below="@id/tv1"
+
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         />
@@ -21,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv1"
-        android:layout_below="@id/view3"
+        android:layout_below="@id/view1"
         android:text="2016"/>
 
 
@@ -37,23 +43,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv2"
-        android:layout_below="@id/view3"
+        android:layout_below="@id/view2"
         android:text="2015"/>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change Detection"
-        android:textSize="24sp"
-        />
+
 
 
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/view3"
-        android:layout_below="@id/tv1"
+        android:layout_below="@id/tv2"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         />
@@ -63,4 +64,6 @@
         android:id="@+id/tv3"
         android:layout_below="@id/view3"
         android:text="Change Map"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

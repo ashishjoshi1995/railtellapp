@@ -28,7 +28,11 @@
             android:value="AIzaSyBFp6EUxbzj7amb8bQZBnoQ-nFojOM8V20" />
 
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".home.home"
@@ -50,16 +54,19 @@
 
 
         </activity>
+
+        <activity
+            android:name=".displayActivities.ClassificationDisplay"
+            android:label="RAILTEL" />
+
+
         <activity
             android:name=".Welcome"
             android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
