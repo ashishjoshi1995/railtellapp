@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
+import com.example.ashish.railtellapp.displayActivities.ClassificationDisplay;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
@@ -120,7 +121,7 @@ public class Classification extends Fragment {
     };
     String[] p = khali;
 
-
+    String java1,java2,java3,java4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -159,6 +160,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
+                java1=y[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + y[sid],
                         Toast.LENGTH_SHORT).show();
             }
@@ -182,6 +184,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
+                java2=d[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + d[sid],
                         Toast.LENGTH_SHORT).show();
             }
@@ -197,6 +200,12 @@ public class Classification extends Fragment {
                 R.layout.simple_spinner_dropdown_item ,s);
 
         state.setAdapter(adapterState);
+        district =(Spinner)view.findViewById(R.id.district);
+
+        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item , p);
+
+        district.setAdapter(adapterDistrict);
 
         state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -207,6 +216,7 @@ public class Classification extends Fragment {
                 int sid=state.getSelectedItemPosition();
                 if(sid==0){
                     p=pun;
+
                 }
                 else if(sid==1){
                     p=ker;
@@ -220,6 +230,11 @@ public class Classification extends Fragment {
                 else if(sid==4){
                     p=utt;
                 }
+                ArrayAdapter<String> adapterDistrict2= new ArrayAdapter<String>(getActivity(),android.
+                        R.layout.simple_spinner_dropdown_item , p);
+
+                district.setAdapter(adapterDistrict2);
+                java3=s[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + s[sid],
                         Toast.LENGTH_SHORT).show();
             }
@@ -228,12 +243,7 @@ public class Classification extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-        district =(Spinner)view.findViewById(R.id.district);
 
-        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
-                R.layout.simple_spinner_dropdown_item , p);
-
-        district.setAdapter(adapterDate);
 
         district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -242,6 +252,7 @@ public class Classification extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
+                java4=p[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + p[sid],
                         Toast.LENGTH_SHORT).show();
             }
@@ -255,8 +266,9 @@ public class Classification extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                new RequestTask().execute("http://aisiitr.in/modis/dtcclassificaiton?classi_cboyear=2016&classi_cbojuliandate=001&classi_cbostate=Uttrakhand&classi_cbodistrict=Haridwar");
+                String[] g=java2.split(": ");
+                new RequestTask().execute("http://aisiitr.in/modis/dtcclassificaiton?classi_cboyear="+java1+
+                        "&classi_cbojuliandate="+g[0]+"&classi_cbostate="+java3+"&classi_cbodistrict="+java4);
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -310,9 +322,9 @@ public class Classification extends Fragment {
             catch (Exception e){
                 e.printStackTrace();
             }
-            String one = "http://aisiitr.in/modis/img/tmpclassi/2016001568.jpg";
-            String one1 = "http://aisiitr.in/modis/img/tmpclassi/2015001568.jpg";
-            String one2 = "http://aisiitr.in/modis/img/tmpcd/2016001568.jpg";
+            String one = "http://aisiitr.in/modis/img/tmpclassi/2016001"+ar[0]+".jpg";
+            String one1 = "http://aisiitr.in/modis/img/tmpclassi/2015001"+ar[0]+".jpg";
+            String one2 = "http://aisiitr.in/modis/img/tmpcd/2016001"+ar[0]+".jpg";
             Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
             Bundle b = new Bundle();
             b.putString("one1", one1);
