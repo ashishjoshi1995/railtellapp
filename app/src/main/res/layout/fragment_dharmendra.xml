@@ -1,19 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ashish.railtellapp.shruti">
+    tools:context="com.example.ashish.railtellapp.Dharmendra">
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shruti Gupta"
-        android:id="@+id/textView37"
+        android:text="Prof. Dharmendra Singh"
+        android:id="@+id/textView27"
         android:textColor="#828206"
         android:textSize="50dp"
         android:layout_alignParentTop="true"
@@ -23,32 +18,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Research Scholar,"
-        android:id="@+id/textView38"
-        android:layout_marginTop="32dp"
+        android:text="Coordinator, RailTel - IIT Roorkee Center of Excellence in Telecommunication,"
+        android:id="@+id/textView28"
+        android:layout_marginTop="27dp"
         android:textSize="10dp"
-        android:layout_below="@+id/textView37" />
+        android:layout_below="@+id/textView27"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Department of Computer &amp; Engineering,"
-        android:id="@+id/textView39"
-        android:layout_below="@+id/textView38"
+        android:text="Professor in Department of Electronics &amp; Communication Engineering,"
+        android:id="@+id/textView29"
+        android:textSize="10dp"
+        android:layout_below="@+id/textView28"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="10dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="IIT Roorkee"
-        android:id="@+id/textView40"
-        android:layout_below="@+id/textView39"
+        android:id="@+id/textView30"
+        android:textSize="10dp"
+        android:layout_below="@+id/textView29"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="10dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

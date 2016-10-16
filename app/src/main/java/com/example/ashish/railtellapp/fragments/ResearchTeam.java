@@ -1,8 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
-import android.content.Context;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -11,71 +10,93 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ashish.railtellapp.Ankush;
+import com.example.ashish.railtellapp.Deepak;
+import com.example.ashish.railtellapp.Dharmendra;
 import com.example.ashish.railtellapp.R;
-import com.example.ashish.railtellapp.ankush;
-import com.example.ashish.railtellapp.deepak;
-import com.example.ashish.railtellapp.prof;
-import com.example.ashish.railtellapp.shruti;
-import com.example.ashish.railtellapp.tasneem;
+import com.example.ashish.railtellapp.Shruti;
+import com.example.ashish.railtellapp.Tasneem;
 
 
-public class ResearchTeam extends Fragment {
-
+public class ResearchTeam extends Fragment{
     public Button d1;
-    public void Dharmendra(View view){
-        d1=(Button) view.findViewById(R.id.d1);
+    public void next1() {
+        d1=(Button) d1.findViewById(R.id.d1);
         d1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent detail = new Intent(getActivity(), prof.class);
-                startActivity(detail);
+            public void onClick(View view) {
+                FragmentTransaction transaction= getFragmentManager().beginTransaction();
+                Dharmendra someFragment = new Dharmendra();
+                transaction.replace(R.id.frame, someFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
+
+    public Button d4;
+    public void next4()  {
+        d4 = (Button) d4.findViewById(R.id.d4);
+        d4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Ankush someFragment = new Ankush();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame, someFragment );
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+            }
+        });
+    }
+
     public Button d2;
-    public void Scholar1(View view){
-        d2=(Button) view.findViewById(R.id.d2);
+    public void next2() {
+        d2=(Button) d2.findViewById(R.id.d2);
         d2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent detail2=new Intent(getActivity(), tasneem.class);
-                startActivity(detail2);
+            public void onClick(View view) {
+                Tasneem someFragment = new Tasneem();
+                FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+                transaction1.replace(R.id.frame, someFragment);
+                transaction1.addToBackStack(null);
+                transaction1.commit();
             }
         });
     }
+
     public Button d3;
-    public void Scholar2(View view){
-        d3=(Button) view.findViewById(R.id.d3);
+    public void next3() {
+        d3=(Button) d3.findViewById(R.id.d3);
         d3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent detail3=new Intent(getActivity(), shruti.class);
-                startActivity(detail3);
+            public void onClick(View view) {
+                FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+                Shruti someFragment = new Shruti();
+                transaction3.replace(R.id.frame, someFragment);
+                transaction3.addToBackStack(null);
+                transaction3.commit();
             }
         });
     }
-    public Button d4;
-    public void Scholar3(View view){
-        d4=(Button) view.findViewById(R.id.d4);
-        d4.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent detail4=new Intent(getActivity(), ankush.class);
-                startActivity(detail4);
-            }
-        }));
-    }
+
     public Button d5;
-    public void Scholar4(View view){
-        d5=(Button) view.findViewById(R.id.d5);
+    public void next5() {
+        d5=(Button) d5.findViewById(R.id.d5);
         d5.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent detail5=new Intent(getActivity(), deepak.class);
-                startActivity(detail5);
+            public void onClick(View view) {
+                FragmentTransaction transaction5=getFragmentManager().beginTransaction();
+                Deepak someFragment = new Deepak();
+                transaction5.replace(R.id.frame, someFragment);
+                transaction5.addToBackStack(null);
+                transaction5.commit();
             }
         });
     }
+
+
 
 
     @Override
@@ -94,10 +115,11 @@ public class ResearchTeam extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Dharmendra(view);
-        Scholar1(view);
-        Scholar2(view);
-        Scholar3(view);
-        Scholar4(view);
+        next1();
+        next2();
+        next3();
+        next4();
+        next5();
     }
+
 }
