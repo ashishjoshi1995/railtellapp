@@ -23,6 +23,9 @@ android {
         javaMaxHeapSize "4g"
     }
 }
+repositories {
+    maven { url "https://jitpack.io" }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -34,4 +37,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.2.1'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:support-v4:24.1.1'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 }

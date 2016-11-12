@@ -1,6 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
+import com.example.ashish.railtellapp.displayActivities.ClassificationDisplay;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -122,6 +124,7 @@ public class CropMonitoringDistFirst extends Fragment {
 
     };
     String[] p = khali;
+    String java1,java2,java3,java4;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,8 +162,9 @@ public class CropMonitoringDistFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + y[sid],
-                        Toast.LENGTH_SHORT).show();
+                java1=y[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + y[sid],
+                //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -182,8 +186,9 @@ public class CropMonitoringDistFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + d[sid],
-                        Toast.LENGTH_SHORT).show();
+                java2=d[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + d[sid],
+                //    Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -197,6 +202,12 @@ public class CropMonitoringDistFirst extends Fragment {
                 R.layout.simple_spinner_dropdown_item ,s);
 
         state.setAdapter(adapterState);
+        district =(Spinner)view.findViewById(R.id.district);
+
+        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item , p);
+
+        district.setAdapter(adapterDistrict);
 
         state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -207,6 +218,7 @@ public class CropMonitoringDistFirst extends Fragment {
                 int sid=state.getSelectedItemPosition();
                 if(sid==0){
                     p=pun;
+
                 }
                 else if(sid==1){
                     p=ker;
@@ -220,20 +232,20 @@ public class CropMonitoringDistFirst extends Fragment {
                 else if(sid==4){
                     p=utt;
                 }
-                Toast.makeText(getActivity(), "You have selected City : " + s[sid],
-                        Toast.LENGTH_SHORT).show();
+                ArrayAdapter<String> adapterDistrict2= new ArrayAdapter<String>(getActivity(),android.
+                        R.layout.simple_spinner_dropdown_item , p);
+
+                district.setAdapter(adapterDistrict2);
+                java3=s[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + s[sid],
+                //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
             }
         });
-        district =(Spinner)view.findViewById(R.id.district);
 
-        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
-                R.layout.simple_spinner_dropdown_item , p);
-
-        district.setAdapter(adapterDate);
 
         district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -242,15 +254,15 @@ public class CropMonitoringDistFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
-                        Toast.LENGTH_SHORT).show();
+                java4=p[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+                //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
             }
         });
-
 
         show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,7 +326,14 @@ public class CropMonitoringDistFirst extends Fragment {
             String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
             String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
             String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
-
+            Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
+            Bundle b = new Bundle();
+            b.putString("one1", one1);
+            b.putString("one",one);
+            b.putString("one2",one2);//Your id
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
+/*
 
             Picasso.with(getActivity())
                     .load(one)
@@ -333,7 +352,7 @@ public class CropMonitoringDistFirst extends Fragment {
                             //.placeholder(R.drawable.pic1a)   // optional
                             //.error(R.drawable.pic1a)      // optional
                             //.resize(400,400)                        // optional
-                    .into(view3);
+                    .into(view3);*/
            /* try {
                 LatLng sydney = new LatLng(Double.parseDouble(ar[1]), Double.parseDouble(ar[2]));
                 mgoogleMap.addMarker(new MarkerOptions().position(sydney));
@@ -355,4 +374,5 @@ public class CropMonitoringDistFirst extends Fragment {
 
         }
     }
+
 }

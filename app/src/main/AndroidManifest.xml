@@ -59,6 +59,11 @@
         </activity>
         <activity android:name=".Result_CropMonitoring" >
         </activity>
+        <activity android:name=".displayActivities.ClassificationDisplay" >
+        </activity>
+        <activity android:name=".displayActivities.CMNDVIYearDistDisplay" >
+
+        </activity>
     </application>
 
 </manifest>
