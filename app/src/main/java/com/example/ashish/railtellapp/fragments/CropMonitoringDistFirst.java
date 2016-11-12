@@ -43,6 +43,7 @@ import java.io.IOException;
 public class CropMonitoringDistFirst extends Fragment {
     Button show;
     ImageView view1,view2,view3;
+    ProgressDialog dialog;
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
@@ -270,6 +271,8 @@ public class CropMonitoringDistFirst extends Fragment {
 
                 new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
                         "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                dialog = ProgressDialog.createDialog(getActivity());
+                dialog.show();
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -287,6 +290,7 @@ public class CropMonitoringDistFirst extends Fragment {
         @Override
         protected String doInBackground(String... uri) {
             Log.e("test","hello");
+
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response;
             String responseString = null;
@@ -315,6 +319,7 @@ public class CropMonitoringDistFirst extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
+            dialog.dismiss();
             Log.e("test",result+"");
             String[] ar=null;
             try {

@@ -39,6 +39,7 @@ import java.io.IOException;
 public class Classification extends Fragment {
     Button show;
     ImageView view1,view2,view3;
+    ProgressDialog dialog;
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
@@ -437,6 +438,8 @@ public class Classification extends Fragment {
                 String[] g=java2.split(": ");
                 new RequestTask().execute("http://aisiitr.in/modis/dtcclassificaiton?classi_cboyear="+java1+
                         "&classi_cbojuliandate="+g[0]+"&classi_cbostate="+java3+"&classi_cbodistrict="+java4);
+                dialog = ProgressDialog.createDialog(getActivity());
+                dialog.show();
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -482,6 +485,7 @@ public class Classification extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
+            dialog.dismiss();
             Log.e("test",result+"");
             String[] ar=null;
             try {
