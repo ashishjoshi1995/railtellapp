@@ -67,7 +67,7 @@
         </activity>
         <activity android:name=".displayActivities.CropMonitoringDistCropCycleDisplay" >
         </activity>
-        <activity android:name=".displayActivities.CropMonitoringDistNDVIJulain" >
+        <activity android:name=".displayActivities.CropMonitoringDistNDVIJulainDisplay" >
         </activity>
         <activity android:name=".displayActivities.CropMonitoringTehsilFirstDisplay" >
         </activity>
@@ -75,6 +75,11 @@
         </activity>
         <activity android:name=".displayActivities.CropMonitoringTehsilNDVIYearDisplay" >
         </activity>
+        <activity android:name=".displayActivities.CropMonitoringDistFirstDisplay" >
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringDistNdviYearDisplay" >
+        </activity>
+
     </application>
 
 </manifest>

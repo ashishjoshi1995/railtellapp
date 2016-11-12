@@ -43,11 +43,25 @@
                 android:layout_below="@+id/year"
                 android:popupBackground="#FFFF99"/>
             <Spinner
-                android:id="@+id/state"
+                android:id="@+id/year1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/date"
+                android:popupBackground="#FFFF99"/>
+            <Spinner
+                android:id="@+id/date1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/year1"
+                android:popupBackground="#FFFF99"/>
+            <Spinner
+                android:id="@+id/state"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/date1"
                 android:popupBackground="#FFFF99"/>
             <Spinner
                 android:id="@+id/district"

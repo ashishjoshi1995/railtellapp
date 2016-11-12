@@ -1,6 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringDistCropCycleDisplay;
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringDistNdviYearDisplay;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -42,9 +45,9 @@ public class CropMonitoringDistCropCycle extends Fragment {
     ImageView view1,view2,view3;
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
-    Spinner year,date,state,district;
+    Spinner year,date,state,district,year1,date1;
 
-    String java1,java2,java3,java4;
+    String java1,java2,java3,java4,java11,java21;
     String[] y = {
             "2016",
             "2015",
@@ -53,7 +56,63 @@ public class CropMonitoringDistCropCycle extends Fragment {
             "2012",
             "2011"
     };
+    String[] y1 = {
+            "2016",
+            "2015",
+            "2014",
+            "2013",
+            "2012",
+            "2011"
+    };
     String[] d = {
+            "001: 01/Jan - 08/Jan",
+            "009: 09/Jan - 16/Jan",
+            "017: 17/Jan - 24/Jan",
+            "025: 25/Jan - 01/Feb",
+            "033: 02/Feb - 09/Feb",
+            "041: 10/Feb - 17/Feb",
+            "049: 18/Feb - 25/Feb",
+            "057: 26/Feb - 05/Mar",
+            "065: 06/Mar - 13/Mar",
+            "073: 14/Mar - 21/Mar",
+            "081: 22/Mar - 29/Mar",
+            "089: 30/Mar - 06/Apr",
+            "097: 07/Apr - 14/Apr",
+            "105: 15/Apr - 22/Apr",
+            "113: 23/Apr - 30/Apr",
+            "121: 01/May - 08/May",
+            "129: 09/May - 16/May",
+            "137: 17/May - 24/May",
+            "145: 25/May - 01/Jun",
+            "153: 02/Jun - 07/Jun",
+            "161: 08/Jun - 17/Jun",
+            "169: 18/Jun - 25/Jun",
+            "177: 26/Jun - 03/Jul",
+            "185: 04/Jul - 11/Jul",
+            "193: 12/Jul - 19/Jul",
+            "201: 20/Jul - 27/Jul",
+            "209: 28/Jul - 04/Aug",
+            "217: 05/Aug - 12/Aug",
+            "225: 13/Aug - 20/Aug",
+            "233: 21/Aug - 28/Aug",
+            "241: 29/Aug - 05/Sep",
+            "249: 06/Sep - 14/Sep",
+            "257: 15/Sep - 21/Sep",
+            "265: 22/Sep - 29/Sep",
+            "273: 30/Sep - 07/Oct",
+            "281: 08/Oct - 15/Oct",
+            "289: 16/Oct - 23/Oct",
+            "297: 24/Oct - 31/Oct",
+            "305: 01/Nov - 08/Nov",
+            "313: 09/Nov - 16/Nov",
+            "321: 17/Nov - 24/Nov",
+            "329: 25/Nov - 02/Dec",
+            "337: 02/Dec - 10/Dec",
+            "345: 11/Dec - 18/Dec",
+            "353: 19/Dec - 26/Dec",
+            "361: 27/Dec - 31/Dec"
+    };
+    String[] d1 = {
             "001: 01/Jan - 08/Jan",
             "009: 09/Jan - 16/Jan",
             "017: 17/Jan - 24/Jan",
@@ -160,8 +219,7 @@ public class CropMonitoringDistCropCycle extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + y[sid],
-                        Toast.LENGTH_SHORT).show();
+                java1=y[sid];
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -183,8 +241,50 @@ public class CropMonitoringDistCropCycle extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + d[sid],
-                        Toast.LENGTH_SHORT).show();
+               java2=d[sid];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+        year1 =(Spinner)view.findViewById(R.id.year1);
+
+        ArrayAdapter<String> adapter1= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item ,y1);
+
+        year1.setAdapter(adapter1);
+
+        year1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // Get select item
+                int sid=year1.getSelectedItemPosition();
+                java11=y1[sid];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        date1 =(Spinner)view.findViewById(R.id.date1);
+
+        ArrayAdapter<String> adapterDate1= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item ,d1);
+
+        date1.setAdapter(adapterDate1);
+
+        date1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // Get select item
+                int sid=date1.getSelectedItemPosition();
+                java21=d1[sid];
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -261,9 +361,11 @@ public class CropMonitoringDistCropCycle extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
-                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                String[] a=java2.split("\\:");
+                String[] a1=java21.split("\\:");
+                new RequestTask().execute("http://aisiitr.in/modis/indexndviprofilecyclic?cbofromyear3="+java1+
+                        "&cbofromjd3="+a[0]+"&cbostate3="+java3+"&cbodistrict3="+java4+"&cbotoyear3="+java11+
+                        "&cbotojd3="+a1[0]);
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -308,56 +410,13 @@ public class CropMonitoringDistCropCycle extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Do anything with response..
-            Log.e("test",result+"");
-            String[] ar=null;
-            try {
-                ar = result.split(",");
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
-            String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
-            String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
+            //Do anything with response.
+            Intent intent = new Intent(getActivity(), CropMonitoringDistCropCycleDisplay.class);
 
-
-            Picasso.with(getActivity())
-                    .load(one)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)
-                            //.resize(400,400)                        // optional
-                    .into(view1);
-            Picasso.with(getActivity())
-                    .load(one1)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)      // optional
-                            //.resize(400,400)                        // optional
-                    .into(view2);
-            Picasso.with(getActivity())
-                    .load(one2)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)      // optional
-                            //.resize(400,400)                        // optional
-                    .into(view3);
-           /* try {
-                LatLng sydney = new LatLng(Double.parseDouble(ar[1]), Double.parseDouble(ar[2]));
-                mgoogleMap.addMarker(new MarkerOptions().position(sydney));
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                CameraPosition position = CameraPosition.builder()
-                        .target(sydney)
-                        .zoom(12f)
-                        .bearing(0.0f)
-                        .tilt(0.0f)
-                        .build();
-                mgoogleMap.animateCamera(CameraUpdateFactory
-                        .newCameraPosition(position), null);
-                mgoogleMap.getUiSettings().setZoomControlsEnabled(true);
-
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }*/
+            Bundle b = new Bundle();
+            b.putString("one1",result);
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
 
         }
     }

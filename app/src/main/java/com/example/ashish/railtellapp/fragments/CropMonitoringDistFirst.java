@@ -32,6 +32,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class CropMonitoringDistFirst extends Fragment {
@@ -333,14 +335,25 @@ public class CropMonitoringDistFirst extends Fragment {
             catch (Exception e){
                 e.printStackTrace();
             }
-            String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
-            String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
-            String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
+            String[] a=java2.split("\\:");
+            String one = "http://aisiitr.in/modis/img/tmp/2015"+a[0]+ar[0]+".jpg";
+            String one1 = "http://aisiitr.in/modis/img/tmp/2016"+a[0]+ar[0]+".jpg";
+            String H=""+java4;
+            Log.e("h",H);
+            char bk=47;
+
+            String one2 = "http://aisiitr.in/modis/img/dist/"+ar[3]+bk+H+".jpg";
+
             Intent intent = new Intent(getActivity(), CropMonitoringDistFirstDisplay.class);
+            Log.e("ar3",ar[3]);
+            Log.e("asasasasasa",one2+"");
+            Log.e("java4",java4+"");
             Bundle b = new Bundle();
             b.putString("one1", one1);
             b.putString("one",one);
-            b.putString("one2", one2);//Your id
+            String one3 = one2.replace("\r\n","");
+            b.putString("one2", one3.toString());//Your id
+            Log.e("one2",one3);
             intent.putExtras(b); //Put your id to your next Intent
             startActivity(intent);
 /*

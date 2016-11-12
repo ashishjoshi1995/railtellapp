@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * Created by Gaurav on 12-Nov-16.
  */
 
-public class CropMonitoringTehsilNDVIYearDisplay extends AppCompatActivity {
+public class CropMonitoringDistNdviYearDisplay extends AppCompatActivity {
     String one;
     String[] p;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cm_tehsil_ndvi_year_display_layout);
+        setContentView(R.layout.cm_nvdi_year_dist_display_layout);
         BarChart barChart = (BarChart) findViewById(R.id.chart);
 
         Bundle b = getIntent().getExtras();

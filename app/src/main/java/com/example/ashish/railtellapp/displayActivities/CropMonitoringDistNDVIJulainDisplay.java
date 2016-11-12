@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by Gaurav on 12-Nov-16.
  */
 
-public class CropMonitoringDistCropCycleDisplay extends AppCompatActivity {
+public class CropMonitoringDistNDVIJulainDisplay extends AppCompatActivity {
     String one;
     String[] p;
     String[] d = {
@@ -70,7 +70,7 @@ public class CropMonitoringDistCropCycleDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cm_dist_cropcycle_display_layout);
+        setContentView(R.layout.cm_dist_ndvi_julian_layout);
         BarChart barChart = (BarChart) findViewById(R.id.chart);
 
         Bundle b = getIntent().getExtras();
@@ -83,13 +83,13 @@ public class CropMonitoringDistCropCycleDisplay extends AppCompatActivity {
         int a=p.length;
         ArrayList<BarEntry> entries = new ArrayList<>();
 
-        for(int i=1;i<a;i++){
+        for(int i=0;i<a;i++){
             entries.add(new BarEntry(Float.parseFloat(p[i]), i));
         }
         BarDataSet dataset = new BarDataSet(entries, "# of Calls");
 
         ArrayList<String> labels = new ArrayList<String>();
-
+        labels.add("2011");
         int ba=d.length;
         for(int i=0;i<ba;i++){
             String[] aa=d[i].split("\\:");

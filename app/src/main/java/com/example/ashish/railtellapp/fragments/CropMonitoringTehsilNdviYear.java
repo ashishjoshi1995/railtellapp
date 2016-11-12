@@ -1,6 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringDistNdviYearDisplay;
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringTehsilNDVIYearDisplay;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
@@ -311,6 +314,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
+                java2=d[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + d[sid],
                         Toast.LENGTH_SHORT).show();
             }
@@ -424,9 +428,9 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
-                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                String[] a=java2.split("\\:");
+                new RequestTask().execute("http://aisiitr.in/modis/indexndviprofiletehsil?cbojuliandate1="+a[0]+
+                        "&cbostate1="+java3+"&cbodistrict1="+java4+"&cbotehsil1="+java5);
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -471,56 +475,13 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //Do anything with response..
-            Log.e("test",result+"");
-            String[] ar=null;
-            try {
-                ar = result.split(",");
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
-            String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
-            String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
+            //Do anything with response.
+            Intent intent = new Intent(getActivity(), CropMonitoringTehsilNDVIYearDisplay.class);
 
-
-            Picasso.with(getActivity())
-                    .load(one)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)
-                            //.resize(400,400)                        // optional
-                    .into(view1);
-            Picasso.with(getActivity())
-                    .load(one1)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)      // optional
-                            //.resize(400,400)                        // optional
-                    .into(view2);
-            Picasso.with(getActivity())
-                    .load(one2)
-                            //.placeholder(R.drawable.pic1a)   // optional
-                            //.error(R.drawable.pic1a)      // optional
-                            //.resize(400,400)                        // optional
-                    .into(view3);
-           /* try {
-                LatLng sydney = new LatLng(Double.parseDouble(ar[1]), Double.parseDouble(ar[2]));
-                mgoogleMap.addMarker(new MarkerOptions().position(sydney));
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                CameraPosition position = CameraPosition.builder()
-                        .target(sydney)
-                        .zoom(12f)
-                        .bearing(0.0f)
-                        .tilt(0.0f)
-                        .build();
-                mgoogleMap.animateCamera(CameraUpdateFactory
-                        .newCameraPosition(position), null);
-                mgoogleMap.getUiSettings().setZoomControlsEnabled(true);
-
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }*/
+            Bundle b = new Bundle();
+            b.putString("one1",result);
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
 
         }
     }
