@@ -266,9 +266,9 @@ public class CropMonitoringDistFirst extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
-                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                    String[] a=java2.split("\\:");
+                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear="+java1+
+                        "&cbojuliandate="+a[0]+"&cbostate="+java3+"&cbodistrict="+java4);
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
