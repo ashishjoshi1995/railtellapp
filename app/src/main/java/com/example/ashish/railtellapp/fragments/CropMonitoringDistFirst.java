@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
 import com.example.ashish.railtellapp.displayActivities.ClassificationDisplay;
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringDistFirstDisplay;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -268,10 +269,15 @@ public class CropMonitoringDistFirst extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear=2015"+
-                        "&cbojuliandate=001&cbostate=Uttrakhand&cbodistrict=Haridwar");
+                    String[] a=java2.split("\\:");
+                new RequestTask().execute("http://aisiitr.in/modis/index?cboyear="+java1+
+                        "&cbojuliandate="+a[0]+"&cbostate="+java3+"&cbodistrict="+java4);
+
+
+
                 dialog = ProgressDialog.createDialog(getActivity());
                 dialog.show();
+
                 //30.18
                 //75
 //http://aisiitr.in/modis/indexndviprofile?cbojuliandate1=001&cbostate1=Uttrakhand&cbodistrict1=Haridwar
@@ -330,7 +336,7 @@ public class CropMonitoringDistFirst extends Fragment {
             String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
             String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
             String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
-            Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
+            Intent intent = new Intent(getActivity(), CropMonitoringDistFirstDisplay.class);
             Bundle b = new Bundle();
             b.putString("one1", one1);
             b.putString("one",one);
