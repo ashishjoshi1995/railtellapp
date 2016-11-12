@@ -1,11 +1,9 @@
 package com.example.ashish.railtellapp.fragments;
 
-import android.content.Context;
-import android.net.Uri;
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +16,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
@@ -43,6 +37,8 @@ public class CropMonitoringDistNdviYear extends Fragment {
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner date,state,district;
+
+    String java1,java2,java3,java4;
 
     String[] d = {
             "001: 01/Jan - 08/Jan",
@@ -168,6 +164,12 @@ public class CropMonitoringDistNdviYear extends Fragment {
                 R.layout.simple_spinner_dropdown_item ,s);
 
         state.setAdapter(adapterState);
+        district =(Spinner)view.findViewById(R.id.district);
+
+        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item , p);
+
+        district.setAdapter(adapterDistrict);
 
         state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -175,36 +177,34 @@ public class CropMonitoringDistNdviYear extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 // Get select item
-                int sid=state.getSelectedItemPosition();
-                if(sid==0){
-                    p=pun;
+                int sid = state.getSelectedItemPosition();
+                if (sid == 0) {
+                    p = pun;
+
+                } else if (sid == 1) {
+                    p = ker;
+                } else if (sid == 2) {
+                    p = tam;
+                } else if (sid == 3) {
+                    p = up;
+                } else if (sid == 4) {
+                    p = utt;
                 }
-                else if(sid==1){
-                    p=ker;
-                }
-                else if(sid==2){
-                    p=tam;
-                }
-                else if(sid==3){
-                    p=up;
-                }
-                else if(sid==4){
-                    p=utt;
-                }
+                ArrayAdapter<String> adapterDistrict2 = new ArrayAdapter<String>(getActivity(), android.
+                        R.layout.simple_spinner_dropdown_item, p);
+
+                district.setAdapter(adapterDistrict2);
+                java3 = s[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + s[sid],
                         Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
             }
         });
-        district =(Spinner)view.findViewById(R.id.district);
 
-        ArrayAdapter<String> adapterDistrict= new ArrayAdapter<String>(getActivity(),android.
-                R.layout.simple_spinner_dropdown_item , p);
-
-        district.setAdapter(adapterDistrict);
 
         district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -213,6 +213,7 @@ public class CropMonitoringDistNdviYear extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
+                java4=p[sid];
                 Toast.makeText(getActivity(), "You have selected City : " + p[sid],
                         Toast.LENGTH_SHORT).show();
             }
