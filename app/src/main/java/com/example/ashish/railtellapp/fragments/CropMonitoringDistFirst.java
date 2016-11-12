@@ -1,12 +1,10 @@
 package com.example.ashish.railtellapp.fragments;
 
-import android.content.Context;
+import android.app.Fragment;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +18,8 @@ import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
 import com.example.ashish.railtellapp.displayActivities.ClassificationDisplay;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -47,6 +40,8 @@ public class CropMonitoringDistFirst extends Fragment {
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
+
+    //String java1,java2,java3,java4;
     String[] y = {
             "2016",
             "2015",
@@ -216,31 +211,30 @@ public class CropMonitoringDistFirst extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 // Get select item
-                int sid=state.getSelectedItemPosition();
-                if(sid==0){
-                    p=pun;
 
+                int sid = state.getSelectedItemPosition();
+                if (sid == 0) {
+                    p = pun;
+
+                } else if (sid == 1) {
+                    p = ker;
+                } else if (sid == 2) {
+                    p = tam;
+                } else if (sid == 3) {
+                    p = up;
+                } else if (sid == 4) {
+                    p = utt;
                 }
-                else if(sid==1){
-                    p=ker;
-                }
-                else if(sid==2){
-                    p=tam;
-                }
-                else if(sid==3){
-                    p=up;
-                }
-                else if(sid==4){
-                    p=utt;
-                }
-                ArrayAdapter<String> adapterDistrict2= new ArrayAdapter<String>(getActivity(),android.
-                        R.layout.simple_spinner_dropdown_item , p);
+                ArrayAdapter<String> adapterDistrict2 = new ArrayAdapter<String>(getActivity(), android.
+                        R.layout.simple_spinner_dropdown_item, p);
 
                 district.setAdapter(adapterDistrict2);
-                java3=s[sid];
-                //Toast.makeText(getActivity(), "You have selected City : " + s[sid],
+                java3 = s[sid];
+               //Toast.makeText(getActivity(), "You have selected City : " + s[sid],
                 //      Toast.LENGTH_SHORT).show();
+
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
@@ -256,8 +250,13 @@ public class CropMonitoringDistFirst extends Fragment {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
                 java4=p[sid];
+
+                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+                        Toast.LENGTH_SHORT).show();
+
                 //Toast.makeText(getActivity(), "You have selected City : " + p[sid],
                 //      Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -335,7 +334,7 @@ public class CropMonitoringDistFirst extends Fragment {
             Bundle b = new Bundle();
             b.putString("one1", one1);
             b.putString("one",one);
-            b.putString("one2",one2);//Your id
+            b.putString("one2", one2);//Your id
             intent.putExtras(b); //Put your id to your next Intent
             startActivity(intent);
 /*

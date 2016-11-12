@@ -50,11 +50,18 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/state"
                 android:popupBackground="#FFFF99"/>
+            <Spinner
+                android:id="@+id/tehsil"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/district"
+                android:popupBackground="#FFFF99"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/show_data"
-                android:layout_below="@id/district"
+                android:layout_below="@id/tehsil"
                 android:text="Display"
                 />
 

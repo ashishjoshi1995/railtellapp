@@ -57,12 +57,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Result_CropMonitoring" >
         </activity>
         <activity android:name=".displayActivities.ClassificationDisplay" >
         </activity>
         <activity android:name=".displayActivities.CMNDVIYearDistDisplay" >
 
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringDistCropCycleDisplay" >
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringDistNDVIJulain" >
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringTehsilFirstDisplay" >
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringTehsilNDVIJulianDisplay" >
+        </activity>
+        <activity android:name=".displayActivities.CropMonitoringTehsilNDVIYearDisplay" >
         </activity>
     </application>
 
