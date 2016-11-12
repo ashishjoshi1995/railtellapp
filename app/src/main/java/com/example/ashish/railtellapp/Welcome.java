@@ -17,6 +17,13 @@ import android.view.MenuItem;
 
 import com.example.ashish.railtellapp.fragments.Classification;
 import com.example.ashish.railtellapp.fragments.CropMonitoring;
+import com.example.ashish.railtellapp.fragments.CropMonitoringDistCropCycle;
+import com.example.ashish.railtellapp.fragments.CropMonitoringDistFirst;
+import com.example.ashish.railtellapp.fragments.CropMonitoringDistNdviJulian;
+import com.example.ashish.railtellapp.fragments.CropMonitoringDistNdviYear;
+import com.example.ashish.railtellapp.fragments.CropMonitoringTehsilFirst;
+import com.example.ashish.railtellapp.fragments.CropMonitoringTehsilNdviJulian;
+import com.example.ashish.railtellapp.fragments.CropMonitoringTehsilNdviYear;
 import com.example.ashish.railtellapp.fragments.Gallery;
 import com.example.ashish.railtellapp.fragments.Home;
 import com.example.ashish.railtellapp.fragments.ResearchTeam;
@@ -100,14 +107,15 @@ public class Welcome extends AppCompatActivity
 
 
         } else if (id == R.id.nav_classification) {
-            navItemIndex = 2;
+            navItemIndex = 8;
             Fragment newFragment = getHomeFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.frame, newFragment);
             transaction.addToBackStack(null);
             transaction.commit();
 
-        } else if (id == R.id.nav_crop_monitor) {
+        }
+        else if (id == R.id.nav_crop_monitor_teh) {
             navItemIndex = 1;
             Fragment newFragment = getHomeFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -115,8 +123,64 @@ public class Welcome extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
 
-        } else if (id == R.id.nav_gallery) {
+        }
+        else if (id == R.id.nav_crop_monitor_dis) {
+            navItemIndex = 2;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+        else if (id == R.id.nav_crop_monitor_discropcycle) {
             navItemIndex = 3;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+        else if (id == R.id.nav_crop_monitor_tehndvijulian) {
+            navItemIndex = 4;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+        else if (id == R.id.nav_crop_monitor_disndvijulian) {
+            navItemIndex = 5;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+        else if (id == R.id.nav_crop_tehndviyear) {
+            navItemIndex = 6;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+        else if (id == R.id.nav_crop_monitor_distndviyear) {
+            navItemIndex = 7;
+            Fragment newFragment = getHomeFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame, newFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
+
+        else if (id == R.id.nav_gallery) {
+            navItemIndex = 9;
             Fragment newFragment = getHomeFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.frame, newFragment);
@@ -132,7 +196,7 @@ public class Welcome extends AppCompatActivity
             //transaction.commit();
 
         } else if (id == R.id.nav_research_team) {
-            navItemIndex = 4;
+            navItemIndex = 10;
             Fragment newFragment = getHomeFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.frame, newFragment);
@@ -156,21 +220,48 @@ public class Welcome extends AppCompatActivity
                     return homeFragment;
                 case 1:
                     // photos
-                    CropMonitoring cropMonitoring = new CropMonitoring();
+                    CropMonitoringTehsilFirst cropMonitoring = new CropMonitoringTehsilFirst();
                     return cropMonitoring;
-                case 2:
+                case 8:
                     // movies fragment
                     Classification classification = new Classification();
                     return classification;
-                case 3:
+                case 9:
                     // notifications fragment
                     Gallery gallery = new Gallery();
                     return gallery;
 
-                case 4:
+                case 10:
                     // settings fragment
                     ResearchTeam researchTeam = new ResearchTeam();
                     return researchTeam;
+
+                case 5:
+                    CropMonitoringDistNdviJulian cropMonitoring5 = new CropMonitoringDistNdviJulian();
+                    return cropMonitoring5;
+
+                case 6:
+                    CropMonitoringTehsilNdviYear cropMonitoring6 = new CropMonitoringTehsilNdviYear();
+                    return cropMonitoring6;
+
+                case 7:
+                    CropMonitoringDistNdviYear cropMonitoring7 = new CropMonitoringDistNdviYear();
+                    return cropMonitoring7;
+
+
+                case 2:
+                    CropMonitoringDistFirst cropMonitoring2 = new CropMonitoringDistFirst();
+                    return cropMonitoring2;
+
+                case 3:
+                    CropMonitoringDistCropCycle cropMonitoring3 = new CropMonitoringDistCropCycle();
+                    return cropMonitoring3;
+
+                case 4:
+                    CropMonitoringTehsilNdviJulian cropMonitoring4 = new CropMonitoringTehsilNdviJulian();
+                    return cropMonitoring4;
+
+
                 default:
                     return new Home();
             }

@@ -7,9 +7,35 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Home" />
         <item
-            android:id="@+id/nav_crop_monitor"
+            android:id="@+id/nav_crop_monitor_teh"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Crop Monitoring" />
+            android:title="Crop Monitoring Tehsil" />
+        <item
+            android:id="@+id/nav_crop_monitor_dis"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Crop Monitoring District" />
+        <item
+            android:id="@+id/nav_crop_monitor_discropcycle"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="CM Crop Cycle" />
+        <item
+            android:id="@+id/nav_crop_monitor_tehndvijulian"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="CM NDVI Julian Tehsil" />
+        <item
+            android:id="@+id/nav_crop_monitor_disndvijulian"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="CM NDVI Julian District" />
+        <item
+            android:id="@+id/nav_crop_tehndviyear"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="CM NDVI Year Tehsil" />
+        <item
+            android:id="@+id/nav_crop_monitor_distndviyear"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="CM NDVI Year District " />
+
+
         <item
             android:id="@+id/nav_classification"
             android:icon="@drawable/ic_menu_slideshow"

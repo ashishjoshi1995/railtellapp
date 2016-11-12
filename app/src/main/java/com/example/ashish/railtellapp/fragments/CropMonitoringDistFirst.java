@@ -1,6 +1,7 @@
 package com.example.ashish.railtellapp.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +17,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ashish.railtellapp.R;
+import com.example.ashish.railtellapp.displayActivities.ClassificationDisplay;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -39,7 +40,7 @@ public class CropMonitoringDistFirst extends Fragment {
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
 
-    String java1,java2,java3,java4;
+    //String java1,java2,java3,java4;
     String[] y = {
             "2016",
             "2015",
@@ -118,6 +119,7 @@ public class CropMonitoringDistFirst extends Fragment {
 
     };
     String[] p = khali;
+    String java1,java2,java3,java4;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,8 +157,9 @@ public class CropMonitoringDistFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + y[sid],
-                        Toast.LENGTH_SHORT).show();
+                java1=y[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + y[sid],
+                //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -178,8 +181,9 @@ public class CropMonitoringDistFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
-                Toast.makeText(getActivity(), "You have selected City : " + d[sid],
-                        Toast.LENGTH_SHORT).show();
+                java2=d[sid];
+                //Toast.makeText(getActivity(), "You have selected City : " + d[sid],
+                //    Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -206,6 +210,7 @@ public class CropMonitoringDistFirst extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 // Get select item
+
                 int sid = state.getSelectedItemPosition();
                 if (sid == 0) {
                     p = pun;
@@ -224,8 +229,9 @@ public class CropMonitoringDistFirst extends Fragment {
 
                 district.setAdapter(adapterDistrict2);
                 java3 = s[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + s[sid],
-                        Toast.LENGTH_SHORT).show();
+               //Toast.makeText(getActivity(), "You have selected City : " + s[sid],
+                //      Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -243,8 +249,13 @@ public class CropMonitoringDistFirst extends Fragment {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
                 java4=p[sid];
+
                 Toast.makeText(getActivity(), "You have selected City : " + p[sid],
                         Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+                //      Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -314,7 +325,14 @@ public class CropMonitoringDistFirst extends Fragment {
             String one = "http://aisiitr.in/modis/img/tmp/2015001"+ar[0]+".jpg";
             String one1 = "http://aisiitr.in/modis/img/tmp/2016001"+ar[0]+".jpg";
             String one2 = "http://aisiitr.in/modis/img/dist/" +"34"+"/Haridwar.jpg";
-
+            Intent intent = new Intent(getActivity(), ClassificationDisplay.class);
+            Bundle b = new Bundle();
+            b.putString("one1", one1);
+            b.putString("one",one);
+            b.putString("one2", one2);//Your id
+            intent.putExtras(b); //Put your id to your next Intent
+            startActivity(intent);
+/*
 
             Picasso.with(getActivity())
                     .load(one)
@@ -333,7 +351,7 @@ public class CropMonitoringDistFirst extends Fragment {
                             //.placeholder(R.drawable.pic1a)   // optional
                             //.error(R.drawable.pic1a)      // optional
                             //.resize(400,400)                        // optional
-                    .into(view3);
+                    .into(view3);*/
            /* try {
                 LatLng sydney = new LatLng(Double.parseDouble(ar[1]), Double.parseDouble(ar[2]));
                 mgoogleMap.addMarker(new MarkerOptions().position(sydney));
@@ -355,4 +373,5 @@ public class CropMonitoringDistFirst extends Fragment {
 
         }
     }
+
 }

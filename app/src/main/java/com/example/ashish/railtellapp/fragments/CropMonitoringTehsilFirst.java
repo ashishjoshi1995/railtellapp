@@ -119,6 +119,8 @@ public class CropMonitoringTehsilFirst extends Fragment {
     };
     String[] p = khali;
     String[] t = khali;
+    String[] u = khali;
+
     int teh=0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -364,7 +366,7 @@ public class CropMonitoringTehsilFirst extends Fragment {
         tehsil =(Spinner)view.findViewById(R.id.tehsil);
 
         ArrayAdapter<String> adapterTehsil= new ArrayAdapter<String>(getActivity(),android.
-                R.layout.simple_spinner_dropdown_item , khali);
+                R.layout.simple_spinner_dropdown_item , t);
 
         tehsil.setAdapter(adapterTehsil);
 
@@ -378,20 +380,20 @@ public class CropMonitoringTehsilFirst extends Fragment {
                 int sid = state.getSelectedItemPosition();
                 if (sid == 0) {
                     p = pun;
-                    khali=t_a1;
+                    t=t_a1;
 
                 } else if (sid == 1) {
                     p = ker;
-                    khali=t_a2;
+                    t=t_a2;
                 } else if (sid == 2) {
                     p = tam;
-                    khali=t_a3;
+                    t=t_a3;
                 } else if (sid == 3) {
                     p = up;
-                    khali=t_a4;
+                    t=t_a4;
                 } else if (sid == 4) {
                     p = utt;
-                    khali=t_a5;
+                    t=t_a5;
                 }
 
                 ArrayAdapter<String> adapterDistrict2 = new ArrayAdapter<String>(getActivity(), android.
@@ -419,13 +421,14 @@ public class CropMonitoringTehsilFirst extends Fragment {
                 int sid=district.getSelectedItemPosition();
                 java4=p[sid];
 
-                String B=khali[sid+1];
-                t=B.split("|");
+                String B=t[sid+1];
+                u=B.split("\\|");
+                Log.e("ypoi",B);
 
-                ArrayAdapter<String> adaptertehsil2 = new ArrayAdapter<String>(getActivity(), android.
-                        R.layout.simple_spinner_dropdown_item,t);
+                ArrayAdapter<String> adapterTehsil2 = new ArrayAdapter<String>(getActivity(), android.
+                        R.layout.simple_spinner_dropdown_item,u);
 
-                district.setAdapter(adaptertehsil2);
+                tehsil.setAdapter(adapterTehsil2);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -439,8 +442,8 @@ public class CropMonitoringTehsilFirst extends Fragment {
                                        int position, long id) {
                 // Get select item
                 int sid=tehsil.getSelectedItemPosition();
-                java5=t[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + t[sid],
+                java5=u[sid];
+                Toast.makeText(getActivity(), "You have selected City : " + u[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override

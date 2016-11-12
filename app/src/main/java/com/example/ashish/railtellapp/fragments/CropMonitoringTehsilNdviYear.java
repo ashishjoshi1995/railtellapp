@@ -36,9 +36,9 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
     ImageView view1,view2,view3;
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
-    Spinner date,state,district;
+    Spinner date,state,district,tehsil;
 
-    String java1,java2,java3,java4;
+    String java1,java2,java3,java4,java5;
 
     String[] d = {
             "001: 01/Jan - 08/Jan",
@@ -110,6 +110,8 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
 
     };
     String[] p = khali;
+    String[] t = khali;
+    String[] u = khali;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +130,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Punjab Tehsil
-        String t_a1[] = new String[90];
+        final String t_a1[] = new String[90];
         t_a1[1] = "Ajnala|Baba Bakala|Patti|Tarn Taran";
         t_a1[2] = "Bathinda|Rampura Phul|Talwandi Sabo";
         t_a1[3] = "Faridkot";
@@ -148,7 +150,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
         t_a1[17] = "Barnala|Maler Kotla|Sangrur|Sunam";
 
 //Kerela Tehsil
-        String[] t_a2 = new String[90];
+        final String[] t_a2 = new String[90];
         t_a2[1] = "Alleppey|Chengannur|Haripad|Mankombu|Mavelikara|n.a. ( 2250)|Shertallai";
         t_a2[2] = "Alwaye|Cochin|Ernakulam|Kotamangalam|Muvattupula|Parur|Perumbavur";
         t_a2[3] = "Devikolam|Pirmed|Todupulai|Udumbanchola";
@@ -167,7 +169,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
 //Tamil Nadu Tehsil
         //
         // t_a3 = new Array();
-        String[] t_a3 = new String[90];
+        final String[] t_a3 = new String[90];
         t_a3[1] = "Ariyalur|Udaiyarpalaiyam";
         t_a3[2] = "Egmore Nungabakkam|Fort Tondiarpet|Mambalam Gundy|Mylapore Tiruvallikk|Perambur Purasavakam";
         t_a3[3] = "Avanashi|Coimbatore|Mettuppalaiyam|Pollachi|Tiruppur|Udumalaippettai";
@@ -200,7 +202,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
         t_a3[30] = "Aruppukottai|Rajapalaiyam|Sattur|Srivilliputtur|Tiruchuli|Virudunagar";
 
 //Uttar Pradesh Tehsil
-        String[] t_a4 = new String[90];
+        final String[] t_a4 = new String[90];
         t_a4[1] = "Agra|Bah|Fatehabad|Khairagarh|Kiraoli";
         t_a4[2] = "Aligarh|Atrauli|Iglas|Khair|Sikandra Rao";
         t_a4[3] = "Handia|Karchana|Meja|Phulpur|Soraon";
@@ -273,7 +275,7 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
         t_a4[70] = "Varanasi";
 
 // Uttarakhand Tehsil
-        String[] t_a5 = new String[90];
+        final String[] t_a5 = new String[90];
         t_a5[1] = "Almora|Ranikhet";
         t_a5[2] = "Bageshwar";
         t_a5[3] = "Chamoli|Joshimath|Karnaprayag";
@@ -317,7 +319,6 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-
         state =(Spinner)view.findViewById(R.id.state);
 
         ArrayAdapter<String> adapterState= new ArrayAdapter<String>(getActivity(),android.
@@ -330,6 +331,13 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
                 R.layout.simple_spinner_dropdown_item , p);
 
         district.setAdapter(adapterDistrict);
+        tehsil =(Spinner)view.findViewById(R.id.tehsil);
+
+        ArrayAdapter<String> adapterTehsil= new ArrayAdapter<String>(getActivity(),android.
+                R.layout.simple_spinner_dropdown_item , t);
+
+        tehsil.setAdapter(adapterTehsil);
+
 
         state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -340,16 +348,22 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
                 int sid = state.getSelectedItemPosition();
                 if (sid == 0) {
                     p = pun;
+                    t = t_a1;
 
                 } else if (sid == 1) {
                     p = ker;
+                    t = t_a2;
                 } else if (sid == 2) {
                     p = tam;
+                    t = t_a3;
                 } else if (sid == 3) {
                     p = up;
+                    t = t_a4;
                 } else if (sid == 4) {
                     p = utt;
+                    t = t_a5;
                 }
+
                 ArrayAdapter<String> adapterDistrict2 = new ArrayAdapter<String>(getActivity(), android.
                         R.layout.simple_spinner_dropdown_item, p);
 
@@ -374,7 +388,30 @@ public class CropMonitoringTehsilNdviYear extends Fragment {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
                 java4=p[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+
+                String B=t[sid+1];
+                u=B.split("\\|");
+                Log.e("ypoi",B);
+
+                ArrayAdapter<String> adapterTehsil2 = new ArrayAdapter<String>(getActivity(), android.
+                        R.layout.simple_spinner_dropdown_item,u);
+
+                tehsil.setAdapter(adapterTehsil2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+        tehsil.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // Get select item
+                int sid=tehsil.getSelectedItemPosition();
+                java5=u[sid];
+                Toast.makeText(getActivity(), "You have selected City : " + u[sid],
                         Toast.LENGTH_SHORT).show();
             }
             @Override

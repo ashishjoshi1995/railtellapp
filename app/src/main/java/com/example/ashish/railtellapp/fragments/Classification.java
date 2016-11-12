@@ -166,8 +166,8 @@ public class Classification extends Fragment {
                 // Get select item
                 int sid=year.getSelectedItemPosition();
                 java1=y[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + y[sid],
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "You have selected City : " + y[sid],
+                  //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -190,8 +190,8 @@ public class Classification extends Fragment {
                 // Get select item
                 int sid=date.getSelectedItemPosition();
                 java2=d[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + d[sid],
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "You have selected City : " + d[sid],
+                    //    Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -240,8 +240,8 @@ public class Classification extends Fragment {
 
                 district.setAdapter(adapterDistrict2);
                 java3=s[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + s[sid],
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "You have selected City : " + s[sid],
+                  //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -258,8 +258,8 @@ public class Classification extends Fragment {
                 // Get select item
                 int sid=district.getSelectedItemPosition();
                 java4=p[sid];
-                Toast.makeText(getActivity(), "You have selected City : " + p[sid],
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "You have selected City : " + p[sid],
+                  //      Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
