@@ -41,6 +41,8 @@ import java.io.IOException;
 public class CropMonitoring extends Fragment {
     Button show;
     ImageView view1,view2,view3;
+ ProgressDialog dialog;
+
     private GoogleMap mgoogleMap;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
@@ -170,6 +172,7 @@ public class CropMonitoring extends Fragment {
 
         date =(Spinner)view.findViewById(R.id.date);
 
+        dialog = ProgressDialog.createDialog(getActivity());
         ArrayAdapter<String> adapterDate= new ArrayAdapter<String>(getActivity(),android.
                 R.layout.simple_spinner_dropdown_item ,d);
 
@@ -275,6 +278,7 @@ public class CropMonitoring extends Fragment {
         @Override
         protected String doInBackground(String... uri) {
             Log.e("test","hello");
+            dialog.show();
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response;
             String responseString = null;
@@ -303,6 +307,7 @@ public class CropMonitoring extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             //Do anything with response..
+            dialog.dismiss();
             Log.e("test",result+"");
             String[] ar=null;
             try {

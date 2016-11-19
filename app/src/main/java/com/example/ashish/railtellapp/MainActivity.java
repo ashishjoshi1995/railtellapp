@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
+import com.example.ashish.railtellapp.fragments.Gallery;
+import com.example.ashish.railtellapp.fragments.ProgressDialog;
+import com.example.ashish.railtellapp.fragments.ResearchTeam;
 import com.example.ashish.railtellapp.home.home;
 
 import org.apache.http.HttpResponse;
@@ -37,8 +40,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText username,password;
-    Button b1;
-
+    Button b1,b3;
+    public Button s4,s5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b1 = (Button) findViewById(R.id.b1);
         b1.setOnClickListener(this);
 
+        s4=(Button)findViewById(R.id.b5);
+        s4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent research=new Intent(MainActivity.this,team.class);
+                startActivity(research);
+            }
+        });
+
+        b3 = (Button)findViewById(R.id.b3);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent research=new Intent(MainActivity.this,gallery.class);
+                startActivity(research);
+            }
+        });
 
         tvForgotPassword.setOnClickListener(this);
 
@@ -84,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int responseCode = 0;
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                final ProgressDialog dialog = ProgressDialog.createDialog(this);
+                dialog.show();
                 HttpClient httpClient = new DefaultHttpClient();
                 HttpGet httppost = new HttpGet("http://aisiitr.in/modis/login?txtusername="+user+"&txtpassword="+pass);
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -105,8 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
                     String json = reader.readLine();
                     Log.e("hahaha",""+json);
-                    Toast.makeText(getApplicationContext(),json,
-                            Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                     Intent i = new Intent(MainActivity.this,Welcome.class);
                     startActivity(i);
 

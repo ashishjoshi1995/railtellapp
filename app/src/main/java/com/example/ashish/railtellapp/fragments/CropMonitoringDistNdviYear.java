@@ -39,6 +39,8 @@ public class CropMonitoringDistNdviYear extends Fragment {
     Button show;
     ImageView view1,view2,view3;
     private GoogleMap mgoogleMap;
+  ProgressDialog dialog;
+
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district;
 
@@ -145,6 +147,7 @@ public class CropMonitoringDistNdviYear extends Fragment {
 
         date.setAdapter(adapterDate);
 
+        dialog = ProgressDialog.createDialog(getActivity());
         date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -233,6 +236,7 @@ public class CropMonitoringDistNdviYear extends Fragment {
             @Override
             public void onClick(View view) {
                 String[] a=java2.split("\\:");
+                dialog.show();
                 new CropMonitoringDistNdviYear.RequestTask().execute("http://aisiitr.in/modis/indexndviprofile?cbojuliandate1="+a[0]+
                         "&cbostate1="+java3+"&cbodistrict1="+java4);
                 //30.18
@@ -281,7 +285,7 @@ public class CropMonitoringDistNdviYear extends Fragment {
             super.onPostExecute(result);
             //Do anything with response.
             Intent intent = new Intent(getActivity(), CropMonitoringDistNdviYearDisplay.class);
-
+dialog.dismiss();
             Bundle b = new Bundle();
             b.putString("one1",result);
             intent.putExtras(b); //Put your id to your next Intent

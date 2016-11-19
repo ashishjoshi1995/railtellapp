@@ -39,6 +39,7 @@ public class CropMonitoringTehsilFirst extends Fragment {
     Button show;
     ImageView view1,view2,view3;
     private GoogleMap mgoogleMap;
+    ProgressDialog dialog;
     static final LatLng TutorialsPoint = new LatLng(21 , 57);
     Spinner year,date,state,district,tehsil;
 
@@ -313,7 +314,7 @@ public class CropMonitoringTehsilFirst extends Fragment {
                 R.layout.simple_spinner_dropdown_item ,y);
 
         year.setAdapter(adapter);
-
+        dialog = ProgressDialog.createDialog(getActivity());
         year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -462,6 +463,7 @@ public class CropMonitoringTehsilFirst extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 String[] a=java2.split("\\:");
                 new RequestTask().execute("http://aisiitr.in/modis/indextehsil?cboyear="+java1+
                         "&cbojuliandate="+a[0]+"&cbostate="+java3+"&cbodistrict="+java4+"&cbotehsil="+java5);
@@ -511,6 +513,7 @@ public class CropMonitoringTehsilFirst extends Fragment {
             super.onPostExecute(result);
             //Do anything with response..
             Log.e("test",result+"");
+            dialog.dismiss();
             String[] ar=null;
             try {
                 ar = result.split(",");

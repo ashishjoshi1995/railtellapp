@@ -10,12 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.ashish.railtellapp.Ankush;
-import com.example.ashish.railtellapp.Deepak;
+//import com.example.ashish.railtellapp.Ankush;
+//import com.example.ashish.railtellapp.Deepak;
 import com.example.ashish.railtellapp.Dharmendra;
 import com.example.ashish.railtellapp.R;
-import com.example.ashish.railtellapp.Shruti;
-import com.example.ashish.railtellapp.Tasneem;
+//import com.example.ashish.railtellapp.Shruti;
+//import com.example.ashish.railtellapp.Tasneem;
 
 
 public class ResearchTeam extends Fragment{
@@ -40,12 +40,12 @@ public class ResearchTeam extends Fragment{
         d4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Ankush someFragment = new Ankush();
+         /*       Ankush someFragment = new Ankush();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame, someFragment );
                 transaction.addToBackStack(null);
                 transaction.commit();
-
+*/
 
             }
         });
@@ -57,11 +57,11 @@ public class ResearchTeam extends Fragment{
         d2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Tasneem someFragment = new Tasneem();
+                        /*Tasneem someFragment = new Tasneem();
                 FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
                 transaction1.replace(R.id.frame, someFragment);
                 transaction1.addToBackStack(null);
-                transaction1.commit();
+                transaction1.commit();*/
             }
         });
     }
@@ -72,11 +72,11 @@ public class ResearchTeam extends Fragment{
         d3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+            /*    FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
                 Shruti someFragment = new Shruti();
                 transaction3.replace(R.id.frame, someFragment);
                 transaction3.addToBackStack(null);
-                transaction3.commit();
+                transaction3.commit();*/
             }
         });
     }
@@ -87,11 +87,11 @@ public class ResearchTeam extends Fragment{
         d5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction5=getFragmentManager().beginTransaction();
+             /*   FragmentTransaction transaction5=getFragmentManager().beginTransaction();
                 Deepak someFragment = new Deepak();
                 transaction5.replace(R.id.frame, someFragment);
                 transaction5.addToBackStack(null);
-                transaction5.commit();
+                transaction5.commit();*/
             }
         });
     }

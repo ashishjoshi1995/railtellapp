@@ -28,7 +28,37 @@
             android:value="AIzaSyBFp6EUxbzj7amb8bQZBnoQ-nFojOM8V20" />
 
         <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".team"
+            android:label="RAILTEL"/>
+        <activity android:name=".prof"
+            android:label="RAILTEL"/>
+        <activity android:name=".tasneem"
+            android:label="RAILTEL"/>
+        <activity android:name=".shruti"
+            android:label="RAILTEL"/>
+        <activity android:name=".ankush"
+            android:label="RAILTEL"/>
+        <activity android:name=".deepak"
+            android:label="RAILTEL"/>
+        <activity android:name=".gallery"
+            android:label="RAILTEL"/>
+        <activity android:name=".gallery2"
+            android:label="RAILTEL"/>
+        <activity android:name=".gallery3"
+            android:label="RAILTEL"/>
+        <activity android:name=".imageview1"
+            android:label="RAILTEL"/>
+        <activity android:name=".preview2"
+            android:label="RAILTEL"
+            />
+        <activity android:name=".preview3"
+            android:label="RAILTEL"/>
         <activity
             android:name=".home.home"
             android:label="RAILTEL" />
@@ -51,11 +81,7 @@
             android:name=".Welcome"
             android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".Result_CropMonitoring" >
