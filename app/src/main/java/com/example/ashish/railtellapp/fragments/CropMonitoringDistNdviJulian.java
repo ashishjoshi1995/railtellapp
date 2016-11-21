@@ -193,7 +193,7 @@ public class CropMonitoringDistNdviJulian extends Fragment {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dialog.show();
                 new RequestTask().execute("http://aisiitr.in/modis/ndviprofileyear?cboyear2="+java1
                         +"&cbostate2="+java3+"&cbodistrict2="+java4);
                 //30.18
@@ -215,7 +215,7 @@ public class CropMonitoringDistNdviJulian extends Fragment {
             Log.e("test", "hello");
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response;
-            dialog.show();
+
             String responseString = null;
             try {
                 response = httpclient.execute(new HttpGet(uri[0]));

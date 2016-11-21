@@ -12,13 +12,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.StrictMode;
 
+import com.example.ashish.railtellapp.displayActivities.CropMonitoringDistNdviYearDisplay;
+import com.example.ashish.railtellapp.fragments.CropMonitoringDistNdviYear;
 import com.example.ashish.railtellapp.fragments.Gallery;
 import com.example.ashish.railtellapp.fragments.ProgressDialog;
 import com.example.ashish.railtellapp.fragments.ResearchTeam;
 import com.example.ashish.railtellapp.home.home;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -31,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONTokener;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -41,6 +47,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText username,password;
     Button b1,b3;
+    ProgressDialog dialog;
     public Button s4,s5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,41 +111,72 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int responseCode = 0;
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-                final ProgressDialog dialog = ProgressDialog.createDialog(this);
-                dialog.show();
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpGet httppost = new HttpGet("http://aisiitr.in/modis/login?txtusername="+user+"&txtpassword="+pass);
-                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                if (!user.isEmpty() && !pass.isEmpty()) {
 
-                HttpResponse response = null;
-                try {
-                    response = httpClient.execute(httppost);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    dialog.show();
+                    new MainActivity.RequestTask().execute("http://aisiitr.in/modis/login?txtusername="+user
+                            +"&txtpassword="+pass);
 
+
+
+                    // writing response to logLog.e("Http Response:", response.toString()
+
+                } else {
+                    // Prompt user to enter credentials
+                    Toast.makeText(getApplicationContext(),
+                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            .show();
                 }
 
-                // writing response to logLog.e("Http Response:", response.toString());
-
-                try {
-
-                    //Log.e("getting response",""+response.getEntity().getContent().toString());
-                    Log.e("HELLO","HELLO");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-                    String json = reader.readLine();
-                    Log.e("hahaha",""+json);
-                    dialog.dismiss();
-                    Intent i = new Intent(MainActivity.this,Welcome.class);
-                    startActivity(i);
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),""+e.getMessage()+"nnnnnnnnnnn "+e.getCause(),
-                            Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-
-                }
                 break;
         }
 
+    }
+    class RequestTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... uri) {
+            Log.e("test", "hello");
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response;
+            String responseString = null;
+            try {
+                response = httpclient.execute(new HttpGet(uri[0]));
+                StatusLine statusLine = response.getStatusLine();
+                if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(out);
+                    responseString = out.toString();
+                    out.close();
+                } else{
+                    //Closes the connection.
+                    response.getEntity().getContent().close();
+                    throw new IOException(statusLine.getReasonPhrase());
+                }
+            } catch (ClientProtocolException e) {
+                //TODO Handle problems..
+            } catch (IOException e) {
+                //TODO Handle problems..
+            }
+            return responseString;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //Do anything with response.
+            if(result.equals("true")){
+                Intent intent = new Intent(MainActivity.this,Welcome.class);
+                dialog.dismiss();
+                startActivity(intent);
+            }
+            else{
+                // Prompt user to enter credentials
+                Toast.makeText(getApplicationContext(),
+                        "Please enter correct credentials!", Toast.LENGTH_LONG)
+                        .show();
+            }
+
+        }
     }
 }

@@ -285,7 +285,7 @@ public class CropMonitoringDistNdviYear extends Fragment {
             super.onPostExecute(result);
             //Do anything with response.
             Intent intent = new Intent(getActivity(), CropMonitoringDistNdviYearDisplay.class);
-dialog.dismiss();
+            dialog.dismiss();
             Bundle b = new Bundle();
             b.putString("one1",result);
             intent.putExtras(b); //Put your id to your next Intent

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -187,14 +188,6 @@ public class Welcome extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
 
-        } else if (id == R.id.nav_logout) {
-            //navItemIndex = 1;
-            //Fragment newFragment = getHomeFragment();
-            //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            //transaction.replace(R.id.frame, newFragment);
-           // transaction.addToBackStack(null);
-            //transaction.commit();
-
         } else if (id == R.id.nav_research_team) {
             navItemIndex = 10;
             Fragment newFragment = getHomeFragment();
@@ -203,6 +196,12 @@ public class Welcome extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
 
+        }
+
+        else if(id==R.id.nav_logout){
+            navItemIndex = 11;
+            Log.e("hejeje","djdjgo");
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -261,7 +260,8 @@ public class Welcome extends AppCompatActivity
                     CropMonitoringTehsilNdviJulian cropMonitoring4 = new CropMonitoringTehsilNdviJulian();
                     return cropMonitoring4;
 
-
+                case 11:
+                    finish();
                 default:
                     return new Home();
             }
